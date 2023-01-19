@@ -19,16 +19,29 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+Histogram of plastic waste per capita faceted by continent
 
 ```{r plastic-waste-continent}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% #filtering out 3.5
+ggplot(aes(x = plastic_waste_per_cap,
+                                 group=continent,
+                                 color=continent,
+                                 fill=continent)) +
+  geom_histogram(binwidth = 0.1,alpha = 0.3)
 ```
+
+From the histogram it appears Africa is the most consistent(least variant) continent
+of all the continents.
 
 ### Exercise 2
 
+The density distribution of plastic waste per capita faceted by continent
 ```{r plastic-waste-density}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
+ggplot(aes(x = plastic_waste_per_cap,
+           color=continent,
+           fill=continent)) +
+  geom_density(alpha=0.3)
 ```
 
 ### Exercise 3
