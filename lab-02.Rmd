@@ -26,8 +26,8 @@ plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% #filtering out 3.5
 ggplot(aes(x = plastic_waste_per_cap)) +
   facet_wrap(~continent)+
   labs(title = "Plastic Waste Per Capita by Continent")+
-  xlab("Waste Per Capita")+
-  ylab("Density")+
+  xlab("Plastic Waste Per Capita")+
+  ylab("Count")+
   geom_histogram(binwidth = 0.1,color="black")
 ```
 
@@ -44,32 +44,47 @@ ggplot(aes(x = plastic_waste_per_cap,
            color=continent,
            fill=continent)) +
   labs(title ="Plastic waste per capita by continent")+
-  xlab("Waste Per Capita")+
+  xlab("Plastic Waste Per Capita")+
   ylab("Density")+
   geom_density(alpha=0.3)
 ```
 
+### Exercise 3
+
 We defined the color and fill of the curves by mapping the aesthetics because they are
 based on the data values (the continent label). The alpha level is not based on the data values,therefore it goes in the geom as a characteristic. 
 
-### Exercise 3
-
-Remove this text, and add your answer for Exercise 3 here.
-
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+In contrast to box plots, violins reveal the continuous density. It is apparent here
+that the violins are just a mirrored density distribution of each continent displayed 
+in a similar way to box plots. 
+
+The box plots are able to display the quartiles and the median of the data. Violins 
+cannot do this.
 
 ```{r plastic-waste-violin}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
+ggplot( mapping = aes(x = continent, 
+                      y = plastic_waste_per_cap)) +
+    labs(title ="Plastic waste per capita by continent")+
+  ylab("Plastic Waste Per Capita")+
+  xlab("Continent")+
+  geom_violin()
 ```
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
-
+There appears to be a positive relationship here between plastic and mismanaged plastic 
+waste per capita. However, it also appears this relationship weakens with increased levels of plastic waster per capita.
 ```{r plastic-waste-mismanaged}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
+ggplot( mapping = aes(x = plastic_waste_per_cap, 
+                      y = mismanaged_plastic_waste_per_cap)) +
+    labs(title ="Relationship between Plastic and Mismanaged Plastic Per Capita")+
+  ylab("Mismanged Plastic Waste Per Capita")+
+  xlab("Plastic Waste Per Captia")+
+  geom_point()
 ```
 
 ### Exercise 6
