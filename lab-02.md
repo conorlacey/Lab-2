@@ -155,7 +155,8 @@ Plastic Waste Per Capita")+
 
 ### Exercise 8
 
-Remove this text, and add your answer for Exercise 8 here.
+There appears to be no relationship between plastic waste per capita and
+coastal population proportion
 
 ``` r
 plot<-plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
