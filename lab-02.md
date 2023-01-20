@@ -1,17 +1,15 @@
----
-title: "Lab 02 - Plastic waste"
-author: "Conor Lacey"
-date: "01/19/23"
-output: github_document
----
+Lab 02 - Plastic waste
+================
+Conor Lacey
+01/19/23
 
 ## Load packages and data
 
-```{r load-packages, message=FALSE}
+``` r
 suppressWarnings(library(tidyverse)) 
 ```
 
-```{r load-data, message=FALSE}
+``` r
 plastic_waste <- read.csv("data/plastic-waste.csv")
 ```
 
@@ -21,7 +19,7 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 Histogram of plastic waste per capita faceted by continent
 
-```{r plastic-waste-continent}
+``` r
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% #filtering out 3.5
 ggplot(aes(x = plastic_waste_per_cap)) +
   facet_wrap(~continent)+
@@ -31,14 +29,18 @@ ggplot(aes(x = plastic_waste_per_cap)) +
   geom_histogram(binwidth = 0.1,color="black")
 ```
 
-From the histogram it appears Africa is the least variant continent
-of all the continents. It also appears that North America is the most variant 
-continent of all the continents.
+![](lab-02_files/figure-gfm/plastic-waste-continent-1.png)<!-- -->
+
+From the histogram it appears Africa is the least variant continent of
+all the continents. It also appears that North America is the most
+variant continent of all the continents.
 
 ### Exercise 2
 
-The density distribution of plastic waste per capita faceted by continent
-```{r plastic-waste-density}
+The density distribution of plastic waste per capita faceted by
+continent
+
+``` r
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot(aes(x = plastic_waste_per_cap,
            color=continent,
@@ -49,21 +51,25 @@ ggplot(aes(x = plastic_waste_per_cap,
   geom_density(alpha=0.3)
 ```
 
+![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- -->
+
 ### Exercise 3
 
-We defined the color and fill of the curves by mapping the aesthetics because they are
-based on the data values (the continent label). The alpha level is not based on the data values,therefore it goes in the geom as a characteristic. 
+We defined the color and fill of the curves by mapping the aesthetics
+because they are based on the data values (the continent label). The
+alpha level is not based on the data values,therefore it goes in the
+geom as a characteristic.
 
 ### Exercise 4
 
-In contrast to box plots, violins reveal the continuous density. It is apparent here
-that the violins are just a mirrored density distribution of each continent displayed 
-in a similar way to box plots. 
+In contrast to box plots, violins reveal the continuous density. It is
+apparent here that the violins are just a mirrored density distribution
+of each continent displayed in a similar way to box plots.
 
-The box plots are able to display the quartiles and the median of the data. Violins 
-cannot do this.
+The box plots are able to display the quartiles and the median of the
+data. Violins cannot do this.
 
-```{r plastic-waste-violin}
+``` r
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = continent, 
                       y = plastic_waste_per_cap)) +
@@ -73,12 +79,16 @@ ggplot( mapping = aes(x = continent,
   geom_violin()
 ```
 
+![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
+
 ### Exercise 5
 
-There appears to be a positive relationship here between plastic and mismanaged plastic 
-waste per capita. However, it also appears this relationship weakens with increased levels of mismanaged plastic waste per capita.
+There appears to be a positive relationship here between plastic and
+mismanaged plastic waste per capita. However, it also appears this
+relationship weakens with increased levels of mismanaged plastic waste
+per capita.
 
-```{r plastic-waste-mismanaged}
+``` r
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap, 
                       y =plastic_waste_per_cap)) +
@@ -88,15 +98,18 @@ ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap,
   geom_point()
 ```
 
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
+
 ### Exercise 6
 
-Coloring the points by continent it appears there is a positive relationship 
-between plastic waste per capita and mismanaged plastic waster per capita.The
-relationship is still weird however when looking at Asia as the relationship weakens
-as the level of mismanaged plastic waste per capita increases. There also appears to 
-be no relationship in Europe.
+Coloring the points by continent it appears there is a positive
+relationship between plastic waste per capita and mismanaged plastic
+waster per capita.The relationship is still weird however when looking
+at Asia as the relationship weakens as the level of mismanaged plastic
+waste per capita increases. There also appears to be no relationship in
+Europe.
 
-```{r plastic-waste-mismanaged-continent}
+``` r
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap, 
                       y =plastic_waste_per_cap,
@@ -107,10 +120,13 @@ ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap,
   geom_point()
 ```
 
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
+
 ### Exercise 7
 
-There does not appear to be a relationship for either plot. 
-```{r plastic-waste-population-total}
+There does not appear to be a relationship for either plot.
+
+``` r
 plot<-plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = total_pop, 
                       y = plastic_waste_per_cap)) +
@@ -122,7 +138,9 @@ and plastic waste per capita")+
 suppressWarnings(print(plot))
 ```
 
-```{r plastic-waste-population-coastal}
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
+``` r
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = coastal_pop, 
                       y = plastic_waste_per_cap)) +
@@ -133,11 +151,13 @@ Plastic Waste Per Capita")+
   geom_point()
 ```
 
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
+
 ### Exercise 8
 
 Remove this text, and add your answer for Exercise 8 here.
 
-```{r recreate-viz}
+``` r
 plot<-plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = (coastal_pop/total_pop), 
                       y = plastic_waste_per_cap,
@@ -154,22 +174,21 @@ ggplot( mapping = aes(x = (coastal_pop/total_pop),
 suppressWarnings(print(plot))
 ```
 
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
+
 ## Pro-Tips
 
 ### Excercise 3
 
 Try this :D
 
-ggplot(data = plastic_waste, 
-       mapping = aes(x = continent, 
-                     y = plastic_waste_per_cap)) +
-  geom_violin()+
-  geom_boxplot(width=.3, fill="green") +
-  stat_summary(fun.y=median, geom="point") 
-  
-### Exercise 5 
+ggplot(data = plastic_waste, mapping = aes(x = continent, y =
+plastic_waste_per_cap)) + geom_violin()+ geom_boxplot(width=.3,
+fill=“green”) + stat_summary(fun.y=median, geom=“point”)
 
-Helpful reference:http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements
+### Exercise 5
 
-
-
+Helpful
+reference:<http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements>
