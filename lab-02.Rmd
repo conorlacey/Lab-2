@@ -104,8 +104,7 @@ ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap,
     labs(title ="Relationship between Plastic and Mismanaged Plastic Per Capita")+
   ylab("Plastic Waste Per Capita")+
   xlab("Mismanaged Plastic Waste Per Captia")+
-  geom_point()+
-  facet_wrap(~continent)
+  geom_point()
 ```
 
 ### Exercise 7
