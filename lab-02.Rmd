@@ -76,7 +76,8 @@ ggplot( mapping = aes(x = continent,
 ### Exercise 5
 
 There appears to be a positive relationship here between plastic and mismanaged plastic 
-waste per capita. However, it also appears this relationship weakens with increased levels of plastic waster per capita.
+waste per capita. However, it also appears this relationship weakens with increased levels of plastic waste per capita.
+
 ```{r plastic-waste-mismanaged}
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
 ggplot( mapping = aes(x = plastic_waste_per_cap, 
@@ -89,10 +90,18 @@ ggplot( mapping = aes(x = plastic_waste_per_cap,
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+Coloring the points by continent it appears there is a positive relationship 
+between plastic waste per capita and mismanaged plastic waster per capita in Africa, and Oceania. There does appear to be a positive relationship as well for Asia, but again this relationship appears to weaken as plastic waste per capita increases. Also, there appears to be a postive relationship for North America, but it is not very strong. There does not appear to be much of a relationship for Europe and South America.
 
 ```{r plastic-waste-mismanaged-continent}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
+ggplot( mapping = aes(x = plastic_waste_per_cap, 
+                      y = mismanaged_plastic_waste_per_cap,
+                      color = continent)) +
+    labs(title ="Relationship between Plastic and Mismanaged Plastic Per Capita")+
+  ylab("Mismanged Plastic Waste Per Capita")+
+  xlab("Plastic Waste Per Captia")+
+  geom_point()
 ```
 
 ### Exercise 7
