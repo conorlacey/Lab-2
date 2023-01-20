@@ -76,44 +76,61 @@ ggplot( mapping = aes(x = continent,
 ### Exercise 5
 
 There appears to be a positive relationship here between plastic and mismanaged plastic 
-waste per capita. However, it also appears this relationship weakens with increased levels of plastic waste per capita.
+waste per capita. However, it also appears this relationship weakens with increased levels of mismanaged plastic waste per capita.
 
 ```{r plastic-waste-mismanaged}
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
-ggplot( mapping = aes(x = plastic_waste_per_cap, 
-                      y = mismanaged_plastic_waste_per_cap)) +
+ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap, 
+                      y =plastic_waste_per_cap)) +
     labs(title ="Relationship between Plastic and Mismanaged Plastic Per Capita")+
-  ylab("Mismanged Plastic Waste Per Capita")+
-  xlab("Plastic Waste Per Captia")+
+  ylab("Plastic Waste Per Capita")+
+  xlab("Mismanaged Plastic Waste Per Captia")+
   geom_point()
 ```
 
 ### Exercise 6
 
 Coloring the points by continent it appears there is a positive relationship 
-between plastic waste per capita and mismanaged plastic waster per capita in Africa, and Oceania. There does appear to be a positive relationship as well for Asia, but again this relationship appears to weaken as plastic waste per capita increases. Also, there appears to be a postive relationship for North America, but it is not very strong. There does not appear to be much of a relationship for Europe and South America.
+between plastic waste per capita and mismanaged plastic waster per capita.The
+relationship is still weird however when looking at Asia as the relationship weakens
+as the level of mismanaged plastic waste per capita increases. There also appears to 
+be no relationship in Europe.
 
 ```{r plastic-waste-mismanaged-continent}
 plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
-ggplot( mapping = aes(x = plastic_waste_per_cap, 
-                      y = mismanaged_plastic_waste_per_cap,
-                      color = continent)) +
+ggplot( mapping = aes(x = mismanaged_plastic_waste_per_cap, 
+                      y =plastic_waste_per_cap,
+                      color=continent)) +
     labs(title ="Relationship between Plastic and Mismanaged Plastic Per Capita")+
-  ylab("Mismanged Plastic Waste Per Capita")+
-  xlab("Plastic Waste Per Captia")+
-  geom_point()
+  ylab("Plastic Waste Per Capita")+
+  xlab("Mismanaged Plastic Waste Per Captia")+
+  geom_point()+
+  facet_wrap(~continent)
 ```
 
 ### Exercise 7
 
-Remove this text, and add your answer for Exercise 7 here.
-
+There does not appear to be a relationship for either plot. 
 ```{r plastic-waste-population-total}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
+ggplot( mapping = aes(x = total_pop, 
+                      y = plastic_waste_per_cap)) +
+    labs(title ="Relationship between Total Population
+and plastic waste per capita")+
+  ylab("Plastic Waste Per Capita")+
+  xlab("Total Population")+
+  geom_point()
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>% 
+ggplot( mapping = aes(x = coastal_pop, 
+                      y = plastic_waste_per_cap)) +
+    labs(title ="Relationship between Coastal Population and 
+    Plastic Waste Per Capita")+
+  ylab("Plastic Waste Per Capita")+
+  xlab("Coastal Population")+
+  geom_point()
 ```
 
 ### Exercise 8
@@ -121,7 +138,7 @@ Remove this text, and add your answer for Exercise 7 here.
 Remove this text, and add your answer for Exercise 8 here.
 
 ```{r recreate-viz}
-# insert code here
+
 ```
 
 ## Pro-Tips
