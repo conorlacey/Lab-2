@@ -27,11 +27,16 @@ ggplot(aes(x = plastic_waste_per_cap,
                                  group=continent,
                                  color=continent,
                                  fill=continent)) +
+  facet_wrap(~continent)+
+  labs(title = "Plastic Waste Per Capita by Continent")+
+  xlab("Waste Per Capita")+
+  ylab("Density")+
   geom_histogram(binwidth = 0.1,alpha = 0.3)
 ```
 
-From the histogram it appears Africa is the most consistent(least variant) continent
-of all the continents.
+From the histogram it appears Africa is the least variant continent
+of all the continents. It also appears that North America is the most variant 
+continent of all the continents.
 
 ### Exercise 2
 
@@ -41,9 +46,15 @@ plastic_waste %>%filter(plastic_waste_per_cap < 3.5) %>%
 ggplot(aes(x = plastic_waste_per_cap,
            color=continent,
            fill=continent)) +
+  facet_wrap(~continent)+
+  labs(title ="Plastic waste per capita by continent")+
+  xlab("Waste Per Capita")+
+  ylab("Density")+
   geom_density(alpha=0.3)
 ```
 
+We defined the color and fill of the curves by mapping the aesthetics because they are
+based on the data values (the continent label). The alpha level is not based on the data values,therefore it goes in the geom as a characteristic. 
 ### Exercise 3
 
 Remove this text, and add your answer for Exercise 3 here.
