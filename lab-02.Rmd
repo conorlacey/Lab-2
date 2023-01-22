@@ -147,10 +147,7 @@ ggplot( mapping = aes(x = (coastal_pop/total_pop),
   ylab("Plastic Waste Per Capita")+
   xlab("Coastal Population Proportion (Coastal/total population)")+
   geom_point()+
-  geom_smooth(inherit.aes = FALSE,
-              aes(x = (coastal_pop/total_pop), 
-                  y = plastic_waste_per_cap),
-              color="black")
+  geom_smooth(color="black")
 suppressWarnings(print(plot))
 ```
 
